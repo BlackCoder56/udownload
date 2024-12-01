@@ -1,0 +1,23 @@
+# Virtual environment
+box/
+.env/
+
+# Python files
+*.pyc
+__pycache__/
+
+# Django specific
+db.sqlite3  # Exclude SQLite database (if used)
+media/      # Exclude user-uploaded files
+staticfiles/  # Exclude collected static files
+
+# Logs
+*.log
+
+# IDE settings
+.vscode/
+.idea/
+
+# OS files
+.DS_Store  # macOS
+Thumbs.db  # Windows
