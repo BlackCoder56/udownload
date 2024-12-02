@@ -14,7 +14,7 @@ def download_video(request):
             try:
                 yt = YouTube(video_url)
                 # Pass video details to the context
-                context['video_title'] = yt.title
+                # context['video_title'] = yt.title
                 context['video_thumbnail'] = yt.thumbnail_url
                 context['video_url'] = video_url
             except Exception as e:

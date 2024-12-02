@@ -1,21 +1,37 @@
 {% extends 'downloader/base.html' %}
 
 {% block content %}
-<h1 class="mb-4">YouTube Video Downloader</h1>
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Get Video</button>
-</form>
 
-{% if video_thumbnail %}
-    <h2>Video Details</h2>
-    <img src="{{ video_thumbnail }}" alt="Thumbnail" style="width: 300px; height: auto;">
+    <h1>U-Download App</h1>
 
-    <form method="POST" action="{% url 'confirm_download' %}">
-        {% csrf_token %}
-        <input type="hidden" name="video_url" value="{{ video_url }}">
-        <button type="submit">Download Video</button>
-    </form>
-{% endif %}
+    <!-- Form Section -->
+    <div class="col-md-6">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary mb-4">Search Video</button>
+        </form>
+    </div>
+
+    <!-- Results Section -->
+    {% comment %} {% if video_title OR video_thumbnail %} {% endcomment %}
+    {% if video_thumbnail  %}
+        <h2>Video Details</h2>
+        {% comment %} <p><strong>Title:</strong> {{ video_title }}</p> {% endcomment %}
+        <img src="{{ video_thumbnail }}" alt="Thumbnail" style="width: 600px; height: auto;">
+        
+        <!-- Download Button -->
+        <form method="POST" action="">
+            {% csrf_token %}
+            <input type="hidden" name="video_url" value="{{ video_url }}">
+            <button type="submit" class="btn btn-danger my-3">Download Video</button>
+        </form>
+    {% endif %}
+
+
+    <!-- Error Message -->
+    {% if error %}
+        <p style="color: red;">Error: {{ error }}</p>
+    {% endif %}
+
 {% endblock %}
