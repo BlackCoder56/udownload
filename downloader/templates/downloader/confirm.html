@@ -1,0 +1,11 @@
+{% extends 'downloader/base.html' %}
+{% block content %}
+<h2>{{ video_title }}</h2>
+<img src="{{ video_thumbnail }}" alt="Video Thumbnail" style="width: 300px; height: auto;">
+<p>Is this the video you want to download?</p>
+<form method="POST" action="{% url 'confirm_download' %}">
+    {% csrf_token %}
+    <input type="hidden" name="video_url" value="{{ video_url }}">
+    <button type="submit">Download Video</button>
+</form>
+{% endblock%}

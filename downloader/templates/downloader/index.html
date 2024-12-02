@@ -1,0 +1,21 @@
+{% extends 'downloader/base.html' %}
+
+{% block content %}
+<h1 class="mb-4">YouTube Video Downloader</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Get Video</button>
+</form>
+
+{% if video_thumbnail %}
+    <h2>Video Details</h2>
+    <img src="{{ video_thumbnail }}" alt="Thumbnail" style="width: 300px; height: auto;">
+
+    <form method="POST" action="{% url 'confirm_download' %}">
+        {% csrf_token %}
+        <input type="hidden" name="video_url" value="{{ video_url }}">
+        <button type="submit">Download Video</button>
+    </form>
+{% endif %}
+{% endblock %}
